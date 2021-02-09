@@ -27,14 +27,29 @@ screen.blit(label,(50,50))
 #challenge: Draw three shapes or lines - look up pygame.draw
 pygame.draw.rect(screen,(255,0,0),(200,150,100,50))
 
-
 #play music
 pygame.mixer.music.load('backgroundmusic.mp3')
 pygame.mixer.music.play()
 
 pygame.display.flip()
 
-input("Press Enter to Exit") #pause the screen using console
+Exit = False
+#clock = pygame.time.Clock()
+while not Exit:
+    #Process events
+    # Control the rate at which game run --> framerate set to 60fps #
+    #clock.tick(60)
+
+    ### Process Main Events and Logic ###
+    for event in pygame.event.get():
+        if event.type == QUIT:
+            Exit = True
+    
+    #Update game objects and do logic
+    #Draw game objects
+    #get_fps(), pygame.time.get_ticks() #time in milliseconds since pygame.init() was called
+    #Flip screen
+
 pygame.quit()
 sys.exit(0)
 
