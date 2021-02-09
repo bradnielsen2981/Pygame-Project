@@ -19,8 +19,6 @@ screen.blit(background, (0,0)) #blit command can be used to show any image.
 
 #create a font
 myfont = pygame.font.SysFont('ArialBold', 30)
-label = myfont.render("Timer: ",True,(255,255,255))
-screen.blit(label,(50,50))
 
 #create a shape or line on the screen
 #challenge: Draw three shapes or lines - look up pygame.draw
@@ -43,11 +41,15 @@ while not Exit: #game loop
             Exit = True
 
     #Logic
+    timer = int(pygame.time.get_ticks()/1000)
     x = x + 1
-
+    timer = str(timer)
+    label = myfont.render("Time: " + timer,True,(255,255,255))
+    
     #Drawing
     screen.blit(background, (0,0))
-    pygame.draw.rect(screen,(255,0,0),(x,y,x+100,y+50))
+    screen.blit(label,(50,50))
+    pygame.draw.rect(screen,(255,0,0),(x,y,100,50))
 
     #flip
     pygame.display.flip()
