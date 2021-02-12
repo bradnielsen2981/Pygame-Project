@@ -1,6 +1,7 @@
 import pygame
 from pygame.locals import *
 import os, sys
+import random
 
 pygame.init()
 pygame.mixer.init()
@@ -32,6 +33,28 @@ clock = pygame.time.Clock()
 Exit = False
 x = 0
 y = 200
+
+#create a blueprint for an object
+# An object is a very advanced variable 
+class myrectangle():
+    def __init__(self):
+        self.x = 512; self.y = 0
+        self.colour = (0,100,255)
+        self.width = 50; self.height = 50
+        self.hspeed = random.randint(-10,10); self.vspeed = 3
+    def draw(self,screen):
+        pygame.draw.rect(screen,self.colour,(self.x,self.y,self.width,self.height))
+        return
+    def update(self):
+        self.x = self.x + self.hspeed
+        self.y = self.y + self.vspeed
+        return
+
+rectanglelist = []
+for i in range(0,50):
+    newrectangle = myrectangle() #create instance of an object of that class - class CONSTRUCTOR
+    rectanglelist.append(newrectangle)
+
 while not Exit: #game loop
 
     clock.tick(60) #framerate
@@ -42,17 +65,22 @@ while not Exit: #game loop
 
     #Logic
     timer = int(pygame.time.get_ticks()/1000)
-    x = x + 1
     timer = str(timer)
     label = myfont.render("Time: " + timer,True,(255,255,255))
+
+    for r in rectanglelist:
+        r.update()
     
     #Drawing
     screen.blit(background, (0,0))
     screen.blit(label,(50,50))
-    pygame.draw.rect(screen,(255,0,0),(x,y,100,50))
+
+    for r in rectanglelist:
+        r.draw(screen)
 
     #flip
     pygame.display.flip()
+
 
 pygame.quit()
 sys.exit()
