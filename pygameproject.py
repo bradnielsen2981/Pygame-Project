@@ -37,11 +37,11 @@ y = 200
 #create a blueprint for an object
 # An object is a very advanced variable 
 class myrectangle():
-    def __init__(self):
-        self.x = 512; self.y = 0
+    def __init__(self, x, y):
+        self.x = x; self.y = y
         self.colour = (0,100,255)
         self.width = 50; self.height = 50
-        self.hspeed = random.randint(-10,10); self.vspeed = 3
+        self.hspeed = random.randint(-10,10); self.vspeed = random.randint(-10,10)
     def draw(self,screen):
         pygame.draw.rect(screen,self.colour,(self.x,self.y,self.width,self.height))
         return
@@ -52,7 +52,7 @@ class myrectangle():
 
 rectanglelist = []
 for i in range(0,50):
-    newrectangle = myrectangle() #create instance of an object of that class - class CONSTRUCTOR
+    newrectangle = myrectangle(512,300) #create instance of an object of that class - class CONSTRUCTOR
     rectanglelist.append(newrectangle)
 
 while not Exit: #game loop
