@@ -51,10 +51,8 @@ class myrectangle():
         return
 
 rectanglelist = []
-for i in range(0,50):
-    newrectangle = myrectangle(512,300) #create instance of an object of that class - class CONSTRUCTOR
-    rectanglelist.append(newrectangle)
-
+ 
+pygame.time.set_timer(USEREVENT + 1, 500)
 while not Exit: #game loop
 
     clock.tick(60) #framerate
@@ -62,6 +60,10 @@ while not Exit: #game loop
     for event in pygame.event.get():
         if event.type == QUIT:
             Exit = True
+        elif event.type == USEREVENT + 1:
+            newrectangle = myrectangle(512,300)
+            rectanglelist.append(newrectangle)
+            pygame.time.set_timer(USEREVENT + 1, 500)
 
     #Logic
     timer = int(pygame.time.get_ticks()/1000)
