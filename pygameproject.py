@@ -3,6 +3,7 @@ from pygame.locals import *
 import os, sys
 import random
 from myrectangle import myrectangle
+from player import Player
 
 pygame.init()
 pygame.mixer.init()
@@ -35,8 +36,9 @@ x = 0
 y = 200
 
 rectanglelist = []
+hero = Player(200,200)
  
-pygame.time.set_timer(USEREVENT + 1, 500)
+pygame.time.set_timer(USEREVENT + 1, 3000)
 while not Exit: #game loop
 
     clock.tick(60) #framerate
@@ -45,24 +47,27 @@ while not Exit: #game loop
         if event.type == QUIT:
             Exit = True
         elif event.type == USEREVENT + 1:
-            newrectangle = myrectangle(512,300)
+            newrectangle = myrectangle(random.randint(0,1024),random.randint(0,600))
             rectanglelist.append(newrectangle)
-            pygame.time.set_timer(USEREVENT + 1, 500)
+            pygame.time.set_timer(USEREVENT + 1, 3000)
+
+    #Process Input
+    
 
     #Logic
     timer = int(pygame.time.get_ticks()/1000)
     timer = str(timer)
     label = myfont.render("Time: " + timer,True,(255,255,255))
-
     for r in rectanglelist:
         r.update()
+
     
     #Drawing
     screen.blit(background, (0,0))
     screen.blit(label,(50,50))
-
     for r in rectanglelist:
         r.draw(screen)
+    hero.draw(screen)
 
     #flip
     pygame.display.flip()
