@@ -1,6 +1,6 @@
 import pygame
 
-class Player():
+class Player(pygame.sprite.Sprite):
 
     def __init__(self, x, y):
         self.image = pygame.image.load("ninja.png")
@@ -13,4 +13,15 @@ class Player():
     def draw(self, screen):
         screen.blit(self.image, (self.rect.x, self.rect.y))
         return
+
+    def update(self, pressed):
+        if pressed[pygame.K_UP] == 1:
+            self.rect.y = self.rect.y - 1
+        if pressed[pygame.K_DOWN] == 1:
+            self.rect.y = self.rect.y + 1
+        if pressed[pygame.K_LEFT] == 1:
+            self.rect.x = self.rect.x - 1
+        if pressed[pygame.K_RIGHT] == 1:
+            self.rect.x = self.rect.x + 1
+        return           
 

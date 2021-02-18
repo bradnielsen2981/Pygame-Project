@@ -52,7 +52,8 @@ while not Exit: #game loop
             pygame.time.set_timer(USEREVENT + 1, 3000)
 
     #Process Input
-    
+    pressed = pygame.key.get_pressed()
+    mouse_x, mouse_y = pygame.mouse.get_pos()
 
     #Logic
     timer = int(pygame.time.get_ticks()/1000)
@@ -60,6 +61,7 @@ while not Exit: #game loop
     label = myfont.render("Time: " + timer,True,(255,255,255))
     for r in rectanglelist:
         r.update()
+    hero.update(pressed)
 
     
     #Drawing
