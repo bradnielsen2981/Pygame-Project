@@ -35,7 +35,7 @@ Exit = False
 x = 0
 y = 200
 
-rectanglelist = []
+rectanglesprites = pygame.sprite.Group()
 hero = Player(200,200)
  
 pygame.time.set_timer(USEREVENT + 1, 3000)
@@ -49,7 +49,7 @@ while not Exit: #game loop
             Exit = True
         elif event.type == USEREVENT + 1:
             newrectangle = myrectangle(random.randint(0,1024),random.randint(0,600))
-            rectanglelist.append(newrectangle)
+            rectanglesprites.add(newrectangle) #adding the sprite to the sprite group
             pygame.time.set_timer(USEREVENT + 1, 3000)
 
     #Process Input
@@ -60,17 +60,14 @@ while not Exit: #game loop
     timer = int(pygame.time.get_ticks()/1000)
     timer = str(timer)
     label = myfont.render("Time: " + timer,True,(255,255,255))
-    
-    for r in rectanglelist:
-        r.update(dimensions)
-        
+
+    rectanglesprites.update(dimensions)
     hero.update(pressed)
     
     #Drawing
     screen.blit(background, (0,0))
     screen.blit(label,(50,50))
-    for r in rectanglelist:
-        r.draw(screen)
+    rectanglesprites.draw(screen)
     hero.draw(screen)
 
     #flip
