@@ -63,6 +63,14 @@ while not Exit: #game loop
 
     rectanglesprites.update(dimensions)
     hero.update(pressed)
+
+    #detect a collision
+    collidedsprites = pygame.sprite.spritecollide(hero, rectanglesprites, True)
+    for collidedsprite in collidedsprites:
+        r1 = myrectangle(100,100)
+        r2 = myrectangle(200,200)
+        rectanglesprites.add(r1)
+        rectanglesprites.add(r2)
     
     #Drawing
     screen.blit(background, (0,0))
