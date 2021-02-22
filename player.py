@@ -3,6 +3,7 @@ import pygame
 class Player(pygame.sprite.Sprite):
 
     def __init__(self, x, y):
+        super().__init__(self) #call the init function of the Sprite
         self.image = pygame.image.load("ninja.png")
         self.image.convert_alpha()
         self.rect = self.image.get_rect()

@@ -39,6 +39,7 @@ rectanglelist = []
 hero = Player(200,200)
  
 pygame.time.set_timer(USEREVENT + 1, 3000)
+
 while not Exit: #game loop
 
     clock.tick(60) #framerate
@@ -59,10 +60,11 @@ while not Exit: #game loop
     timer = int(pygame.time.get_ticks()/1000)
     timer = str(timer)
     label = myfont.render("Time: " + timer,True,(255,255,255))
+    
     for r in rectanglelist:
-        r.update()
+        r.update(dimensions)
+        
     hero.update(pressed)
-
     
     #Drawing
     screen.blit(background, (0,0))
